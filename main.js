@@ -22,9 +22,9 @@ clear.addEventListener("click", () => clearScreen());
 function addNumberToScreen(number) {
 	if (screenCleared) {
 		screenCleared = false;
-		screen.innerHTML = " ";
+		screen.innerHTML = "";
 		screen.innerHTML += number;
-	} else screen.innerHTML += number;
+	} else if (screen.textContent.length < 9) screen.innerHTML += number;
 }
 
 function setOperator(op) {
@@ -45,7 +45,6 @@ function clearScreen() {
 function operate() {
 	if (screenCleared || operator === null) return;
 	secondOperand = parseFloat(screen.innerHTML);
-
 	switch (operator) {
 		case "+":
 			screen.innerHTML = firstOperand + secondOperand;
@@ -60,6 +59,5 @@ function operate() {
 			screen.innerHTML = firstOperand / secondOperand;
 			break;
 	}
-
 	screenCleared = true;
 }
