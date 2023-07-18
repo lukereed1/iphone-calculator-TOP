@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <script src="main.js" defer></script>
     <title>IPhone Calculator</title>
 </head>
@@ -13,28 +16,28 @@
     <main>
         <div class="calculator">
             <div id="screen">
-                <div id="screen-numbers">0</div>
+                <div id="screen-numbers">0123456789</div>
             </div>
             <div id="button-container">
-                <button class="top-row-button">C</button>
-                <button class="top-row-button">+/-</button>
-                <button class="top-row-button">%</button>
-                <button class="operator">/</button>
+                <button id="clear" class="top-row-button">C</button>
+                <button id="pos-neg" class="top-row-button">+/-</button>
+                <button id="percent" class="top-row-button">%</button>
+                <button id="divide" class="operator">/</button>
                 <button class="button">7</button>
                 <button class="button">8</button>
                 <button class="button">9</button>
-                <button class="operator">x</button>
+                <button id="multiply" class="operator">x</button>
                 <button class="button">4</button>
                 <button class="button">5</button>
                 <button class="button">6</button>
-                <button class="operator">-</button>
+                <button id="subtract" class="operator">-</button>
                 <button class="button">1</button>
                 <button class="button">2</button>
                 <button class="button">3</button>
-                <button class="operator">+</button>
+                <button id="plus" class="operator">+</button>
                 <button class="big-button">0</button>
-                <button class="button">.</button>
-                <button class="operator">=</button>
+                <button id="period" class="button">.</button>
+                <button id="operate" class="operator">=</button>
             </div>
         </div>
     </main>
