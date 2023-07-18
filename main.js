@@ -8,6 +8,8 @@ const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#operate");
 const clear = document.querySelector("#clear");
 const screen = document.querySelector("#screen-numbers");
+const percent = document.querySelector("#percent");
+const posNeg = document.querySelector("#pos-neg");
 
 digits.forEach((digit) =>
 	digit.addEventListener("click", (e) => addNumberToScreen(e.target.innerHTML))
@@ -18,6 +20,10 @@ operators.forEach((op) => op.addEventListener("click", (e) => setOperator(e.targ
 equals.addEventListener("click", () => operate());
 
 clear.addEventListener("click", () => clearScreen());
+
+percent.addEventListener("click", () => divide100());
+
+posNeg.addEventListener("click", () => positiveNegative());
 
 function addNumberToScreen(number) {
 	if (screenCleared) {
@@ -32,14 +38,6 @@ function setOperator(op) {
 	operator = op;
 	firstOperand = parseFloat(screen.innerHTML);
 	screenCleared = true;
-}
-
-function clearScreen() {
-	screen.innerHTML = "0";
-	screenCleared = true;
-	operator = null;
-	firstOperand = null;
-	secondOperand = null;
 }
 
 function operate() {
@@ -60,4 +58,25 @@ function operate() {
 			break;
 	}
 	screenCleared = true;
+}
+
+function divide100() {
+	screen.innerHTML = parseFloat(screen.innerHTML) / 100;
+}
+
+function positiveNegative() {
+	let num = parseFloat(screen.innerHTML);
+	if (Math.sign(num) === 1) {
+		screen.innerHTML = -num;
+	} else if (Math.sign(num) === -1) {
+		screen.innerHTML = Math.abs(num);
+	} else return;
+}
+
+function clearScreen() {
+	screen.innerHTML = "0";
+	screenCleared = true;
+	operator = null;
+	firstOperand = null;
+	secondOperand = null;
 }
