@@ -6,15 +6,15 @@ body {
 main {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	min-height: 80vh;
 }
 
 .calculator {
 	display: flex;
 	flex-direction: column;
 	background: black;
-	height: auto;
 	max-width: auto;
-	margin-top: 50px;
 	padding: 0.75em 0.5em;
 	gap: 10px;
 	border-radius: 20px;
@@ -44,7 +44,8 @@ main {
 
 .button,
 .operator,
-.top-row-button {
+.top-row-button,
+.period {
 	font-size: 1rem;
 	padding: 0.5em;
 	border: none;
@@ -53,7 +54,8 @@ main {
 	cursor: pointer;
 }
 
-.button {
+.button,
+.period {
 	background: #505050;
 	color: white;
 }

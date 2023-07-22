@@ -2,6 +2,7 @@ let firstOperand;
 let secondOperand;
 let operator;
 let screenCleared = true;
+let periodPresent;
 
 const digits = document.querySelectorAll(".button");
 const operators = document.querySelectorAll(".operator");
@@ -10,6 +11,7 @@ const clear = document.querySelector("#clear");
 const screen = document.querySelector("#screen-numbers");
 const percent = document.querySelector("#percent");
 const posNeg = document.querySelector("#pos-neg");
+const period = document.querySelector(".period");
 
 digits.forEach((digit) =>
 	digit.addEventListener("click", (e) => addNumberToScreen(e.target.innerHTML))
@@ -25,6 +27,8 @@ percent.addEventListener("click", () => divide100());
 
 posNeg.addEventListener("click", () => positiveNegative());
 
+period.addEventListener("click", () => addPeriodToScreen());
+
 function addNumberToScreen(number) {
 	if (screenCleared) {
 		screenCleared = false;
@@ -33,8 +37,15 @@ function addNumberToScreen(number) {
 	} else if (screen.textContent.length < 9) screen.innerHTML += number;
 }
 
+function addPeriodToScreen() {
+	if (screenCleared || periodPresent) return;
+	screen.innerHTML += ".";
+	periodPresent = true;
+}
+
 function setOperator(op) {
 	if (operator !== null) operate();
+	if (periodPresent) periodPresent = false;
 	operator = op;
 	firstOperand = parseFloat(screen.innerHTML);
 	screenCleared = true;
@@ -45,16 +56,16 @@ function operate() {
 	secondOperand = parseFloat(screen.innerHTML);
 	switch (operator) {
 		case "+":
-			screen.innerHTML = firstOperand + secondOperand;
+			add();
 			break;
 		case "-":
-			screen.innerHTML = firstOperand - secondOperand;
+			minus();
 			break;
 		case "x":
-			screen.innerHTML = firstOperand * secondOperand;
+			multiply();
 			break;
 		case "/":
-			screen.innerHTML = firstOperand / secondOperand;
+			divide();
 			break;
 	}
 	screenCleared = true;
@@ -77,6 +88,45 @@ function clearScreen() {
 	screen.innerHTML = "0";
 	screenCleared = true;
 	operator = null;
-	firstOperand = null;
 	secondOperand = null;
+	periodPresent = false;
+}
+
+function add() {
+	let result = firstOperand + secondOperand;
+	if (answerLengthOverMax(result)) {
+		screen.innerHTML = trimToNineDigits(result);
+	} else screen.innerHTML = result;
+}
+
+function minus() {
+	let result = firstOperand - secondOperand;
+	if (answerLengthOverMax(result)) {
+		screen.innerHTML = trimToNineDigits(result);
+	} else screen.innerHTML = result;
+}
+
+function divide() {
+	let result = firstOperand / secondOperand;
+	if (answerLengthOverMax(result)) {
+		screen.innerHTML = trimToNineDigits(result);
+	} else screen.innerHTML = result;
+}
+
+function multiply() {
+	let result = firstOperand * secondOperand;
+	if (answerLengthOverMax(result)) {
+		screen.innerHTML = trimToNineDigits(result);
+	} else screen.innerHTML = result;
+}
+
+function answerLengthOverMax(number) {
+	let numberLength = Math.abs(number).toString();
+	if (numberLength >= 9) return true;
+}
+
+function trimToNineDigits(number) {
+	let numberString = number.toString();
+	let trimmedNumber = numberString.slice(0, 9);
+	return parseFloat(trimmedNumber);
 }
