@@ -2,7 +2,8 @@ let firstOperand;
 let secondOperand;
 let operator;
 let screenCleared = true;
-let periodPresent;
+let periodPresent = false;
+let operatorInverted = false;
 
 const digits = document.querySelectorAll(".button");
 const operators = document.querySelectorAll(".operator");
@@ -19,6 +20,8 @@ digits.forEach((digit) =>
 
 operators.forEach((op) => op.addEventListener("click", (e) => setOperator(e.target.innerHTML)));
 
+operators.forEach((op) => op.addEventListener("click", (e) => invertOperatorColours(op)));
+
 equals.addEventListener("click", () => operate());
 
 clear.addEventListener("click", () => clearScreen());
@@ -30,6 +33,7 @@ posNeg.addEventListener("click", () => positiveNegative());
 period.addEventListener("click", () => addPeriodToScreen());
 
 function addNumberToScreen(number) {
+	resetOperatorColours();
 	if (screenCleared) {
 		screenCleared = false;
 		screen.innerHTML = "";
@@ -59,7 +63,7 @@ function operate() {
 			add();
 			break;
 		case "-":
-			minus();
+			subtract();
 			break;
 		case "x":
 			multiply();
@@ -90,6 +94,7 @@ function clearScreen() {
 	operator = null;
 	secondOperand = null;
 	periodPresent = false;
+	resetOperatorColours();
 }
 
 function add() {
@@ -99,7 +104,7 @@ function add() {
 	} else screen.innerHTML = result;
 }
 
-function minus() {
+function subtract() {
 	let result = firstOperand - secondOperand;
 	if (answerLengthOverMax(result)) {
 		screen.innerHTML = trimToNineDigits(result);
@@ -129,4 +134,22 @@ function trimToNineDigits(number) {
 	let numberString = number.toString();
 	let trimmedNumber = numberString.slice(0, 9);
 	return parseFloat(trimmedNumber);
+}
+
+function invertOperatorColours(operator) {
+	if (operatorInverted === false) {
+		operator.style.backgroundColor = "white";
+		operator.style.color = "#ff9500";
+		operator.style.transition = ".2s ease";
+		operatorInverted = true;
+	}
+}
+
+function resetOperatorColours() {
+	operators.forEach((op) => {
+		op.style.backgroundColor = "#ff9500";
+		op.style.color = "white";
+		op.style.transition = ".2s ease";
+		operatorInverted = false;
+	});
 }
