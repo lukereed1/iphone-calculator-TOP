@@ -17,39 +17,30 @@ const period = document.querySelector(".period");
 digits.forEach((digit) =>
 	digit.addEventListener("click", (e) => addNumberToScreen(e.target.innerHTML))
 );
-
 digits.forEach((button) =>
 	button.addEventListener("click", () => button.classList.add("grey-pulse"))
 );
-
 digits.forEach((button) =>
 	button.addEventListener("transitionend", () => button.classList.remove("grey-pulse"))
 );
 
 operators.forEach((op) => op.addEventListener("click", (e) => setOperator(e.target.innerHTML)));
-
 operators.forEach((op) => op.addEventListener("click", (e) => invertOperatorColours(op)));
 
 equals.addEventListener("click", () => operate());
-
 equals.addEventListener("click", () => equals.classList.add("grey-pulse"));
-
 equals.addEventListener("transitionend", () => equals.classList.remove("grey-pulse"));
 
 clear.addEventListener("click", () => clearScreen());
-
 clear.addEventListener("transitionend", () => clear.classList.remove("white-pulse"));
 
 percent.addEventListener("click", () => divide100());
-
 percent.addEventListener("transitionend", () => percent.classList.remove("white-pulse"));
 
 posNeg.addEventListener("click", () => positiveNegative());
-
 posNeg.addEventListener("transitionend", () => posNeg.classList.remove("white-pulse"));
 
 period.addEventListener("click", () => addPeriodToScreen());
-
 period.addEventListener("transitionend", () => period.classList.remove("grey-pulse"));
 
 function addNumberToScreen(number) {
@@ -79,6 +70,10 @@ function setOperator(op) {
 function operate() {
 	if (screenCleared || operator === null) return;
 	secondOperand = parseFloat(screen.innerHTML);
+	if (operator === "/" && secondOperand === 0) {
+		screen.innerHTML = "bruh";
+		return;
+	}
 	switch (operator) {
 		case "+":
 			add();
@@ -127,35 +122,30 @@ function clearScreen() {
 
 function add() {
 	let result = firstOperand + secondOperand;
-	if (answerLengthOverMax(result)) {
+	if (result.toString().length >= 9) {
 		screen.innerHTML = trimToNineDigits(result);
 	} else screen.innerHTML = result;
 }
 
 function subtract() {
 	let result = firstOperand - secondOperand;
-	if (answerLengthOverMax(result)) {
+	if (result.toString().length >= 9) {
 		screen.innerHTML = trimToNineDigits(result);
 	} else screen.innerHTML = result;
 }
 
 function divide() {
 	let result = firstOperand / secondOperand;
-	if (answerLengthOverMax(result)) {
+	if (result.toString().length >= 9) {
 		screen.innerHTML = trimToNineDigits(result);
 	} else screen.innerHTML = result;
 }
 
 function multiply() {
 	let result = firstOperand * secondOperand;
-	if (answerLengthOverMax(result)) {
+	if (result.toString().length >= 9) {
 		screen.innerHTML = trimToNineDigits(result);
 	} else screen.innerHTML = result;
-}
-
-function answerLengthOverMax(number) {
-	let numberLength = Math.abs(number).toString();
-	if (numberLength >= 9) return true;
 }
 
 function trimToNineDigits(number) {
