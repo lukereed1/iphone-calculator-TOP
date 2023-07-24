@@ -1,6 +1,6 @@
 # IPhone Calculator Clone
 
-https://lukereed1.github.io/iphone-calculator/
+[Live Preview](https://lukereed1.github.io/iphone-calculator/)
 
 ## Project Description
 
