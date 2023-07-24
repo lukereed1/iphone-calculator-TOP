@@ -14,23 +14,24 @@ main {
 	display: flex;
 	flex-direction: column;
 	background: black;
+	max-height: auto;
 	max-width: auto;
-	padding: 0.75em 0.5em;
-	gap: 10px;
-	border-radius: 20px;
-	border: rgb(120, 118, 118) solid 2px;
+	padding: 2em 1.1em;
+	gap: 15px;
+	border-radius: 40px;
+	border: rgb(120, 118, 118) solid 4px;
 }
 
 #screen {
 	display: flex;
 	width: auto;
-	height: 60px;
+	height: 170px;
 	justify-content: flex-end;
 	align-items: end;
 }
 
 #screen-numbers {
-	font-size: 1.5rem;
+	font-size: 3.75rem;
 	color: white;
 	font-style: bold;
 	padding-right: 0.3em;
@@ -39,14 +40,14 @@ main {
 #button-container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 5px;
+	gap: 10px;
 }
 
 .button,
 .operator,
 .top-row-button,
 .period {
-	font-size: 1rem;
+	font-size: 2.25rem;
 	padding: 0.5em;
 	border: none;
 	border-radius: 50%;
@@ -73,10 +74,10 @@ main {
 }
 
 .big-button {
-	font-size: 1rem;
+	font-size: 2.25rem;
 	grid-column: span 2;
 	border: none;
-	border-radius: 20px;
+	border-radius: 40px;
 	background: #505050;
 	color: white;
 	text-align: left;
@@ -93,7 +94,7 @@ main {
 }
 
 #operate {
-	font-size: 1rem;
+	font-size: 2.25rem;
 	padding: 0.5em;
 	border: none;
 	border-radius: 50%;
