@@ -1,4 +1,4 @@
-# The Odin Project - Iphone Calculator Clone
+# IPhone Calculator Clone
 
 ## Project Description
 
