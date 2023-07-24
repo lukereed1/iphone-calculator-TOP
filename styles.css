@@ -1,3 +1,10 @@
+html {
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 body {
 	background: #d4d4d2;
 	font-family: "Montserrat", sans-serif;
@@ -7,7 +14,6 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-height: 80vh;
 }
 
 .calculator {
