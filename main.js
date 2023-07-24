@@ -44,6 +44,10 @@ period.addEventListener("click", () => addPeriodToScreen());
 period.addEventListener("transitionend", () => period.classList.remove("grey-pulse"));
 
 function addNumberToScreen(number) {
+	if (screen.innerHTML === "0") {
+		screen.innerHTML = "";
+		screenCleared = false;
+	}
 	resetOperatorColours();
 	if (screenCleared) {
 		screenCleared = false;
