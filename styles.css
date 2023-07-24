@@ -58,6 +58,7 @@ main {
 .period {
 	background: #505050;
 	color: white;
+	transition: 0.15s ease;
 }
 
 .operator {
@@ -68,6 +69,7 @@ main {
 .top-row-button {
 	background: #d4d4d2;
 	color: black;
+	transition: 0.15s ease;
 }
 
 .big-button {
@@ -82,6 +84,14 @@ main {
 	cursor: pointer;
 }
 
+.grey-pulse {
+	box-shadow: inset 0 0 2rem #d4d4d2;
+}
+
+.white-pulse {
+	box-shadow: inset 0 0 2rem white;
+}
+
 #operate {
 	font-size: 1rem;
 	padding: 0.5em;
@@ -91,4 +101,5 @@ main {
 	cursor: pointer;
 	background: #ff9500;
 	color: white;
+	transition: 0.15s ease;
 }

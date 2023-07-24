@@ -18,19 +18,39 @@ digits.forEach((digit) =>
 	digit.addEventListener("click", (e) => addNumberToScreen(e.target.innerHTML))
 );
 
+digits.forEach((button) =>
+	button.addEventListener("click", () => button.classList.add("grey-pulse"))
+);
+
+digits.forEach((button) =>
+	button.addEventListener("transitionend", () => button.classList.remove("grey-pulse"))
+);
+
 operators.forEach((op) => op.addEventListener("click", (e) => setOperator(e.target.innerHTML)));
 
 operators.forEach((op) => op.addEventListener("click", (e) => invertOperatorColours(op)));
 
 equals.addEventListener("click", () => operate());
 
+equals.addEventListener("click", () => equals.classList.add("grey-pulse"));
+
+equals.addEventListener("transitionend", () => equals.classList.remove("grey-pulse"));
+
 clear.addEventListener("click", () => clearScreen());
+
+clear.addEventListener("transitionend", () => clear.classList.remove("white-pulse"));
 
 percent.addEventListener("click", () => divide100());
 
+percent.addEventListener("transitionend", () => percent.classList.remove("white-pulse"));
+
 posNeg.addEventListener("click", () => positiveNegative());
 
+posNeg.addEventListener("transitionend", () => posNeg.classList.remove("white-pulse"));
+
 period.addEventListener("click", () => addPeriodToScreen());
+
+period.addEventListener("transitionend", () => period.classList.remove("grey-pulse"));
 
 function addNumberToScreen(number) {
 	resetOperatorColours();
@@ -42,6 +62,7 @@ function addNumberToScreen(number) {
 }
 
 function addPeriodToScreen() {
+	period.classList.add("grey-pulse");
 	if (screenCleared || periodPresent) return;
 	screen.innerHTML += ".";
 	periodPresent = true;
@@ -76,10 +97,16 @@ function operate() {
 }
 
 function divide100() {
-	screen.innerHTML = parseFloat(screen.innerHTML) / 100;
+	percent.classList.add("white-pulse");
+	let result = parseFloat(screen.innerHTML) / 100;
+	if (result.toString().length >= 9) {
+		result = trimToNineDigits(result);
+	}
+	screen.innerHTML = result;
 }
 
 function positiveNegative() {
+	posNeg.classList.add("white-pulse");
 	let num = parseFloat(screen.innerHTML);
 	if (Math.sign(num) === 1) {
 		screen.innerHTML = -num;
@@ -89,6 +116,7 @@ function positiveNegative() {
 }
 
 function clearScreen() {
+	clear.classList.add("white-pulse");
 	screen.innerHTML = "0";
 	screenCleared = true;
 	operator = null;
