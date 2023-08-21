@@ -2,7 +2,7 @@
 
 Part of the Odin Project Foundations curriculum
 
-[Live Preview](https://lukereed1.github.io/iphone-calculator/)
+[Live Preview](https://lukereed1.github.io/iphone-calculator-TOP/)
 
 ## Project Description
 
